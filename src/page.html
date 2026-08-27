@@ -131,6 +131,26 @@ a:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius
 }
 .hero-caption .wrap{padding-block:.85rem;border-bottom:1px solid var(--rule)}
 
+
+/* ---- brand marquee ---------------------------------------------------- *
+ * Two identical rows inside one track; every item carries its own
+ * margin-right, so the track is exactly twice one row and translating
+ * -50% lands on a seamless join.                                          */
+.brands{border-bottom:1px solid var(--rule);padding-block:1.15rem 1.4rem}
+.brands > .wrap{padding-bottom:1.05rem}
+.marquee{
+  overflow:hidden;
+  -webkit-mask-image:linear-gradient(90deg,transparent 0,#000 5%,#000 95%,transparent 100%);
+  mask-image:linear-gradient(90deg,transparent 0,#000 5%,#000 95%,transparent 100%);
+}
+.track{display:flex;width:max-content;animation:slide 52s linear infinite;will-change:transform}
+.marquee:hover .track{animation-play-state:paused}
+.brand-row{display:flex;align-items:center;margin:0;padding:0;list-style:none}
+.brand-row li{flex:none;margin-right:clamp(2.5rem,5vw,4.5rem)}
+.brand-row img{height:38px;width:auto;display:block}
+@keyframes slide{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+@media (max-width:640px){ .brand-row img{height:30px} }
+
 /* ---- main ------------------------------------------------------------ */
 main .wrap{padding-block:clamp(2.75rem,6vw,4.25rem)}
 
@@ -247,7 +267,9 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:.5rem 2rem;padding-block:1.5rem 2.5
   .rise{animation:none;opacity:1;transform:none}
   .dot{animation:none}
   .ic *{animation:none!important}
-  .ic-chain .pulse{display:none}
+  .track{animation:none}
+  .marquee{overflow-x:auto;-webkit-mask-image:none;mask-image:none}
+  .brand-row:last-child{display:none}
 }
 
 @media (max-width:820px){
@@ -283,6 +305,40 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:.5rem 2rem;padding-block:1.5rem 2.5
 <div class="hero-caption">
   <div class="wrap"><span class="label">Manufacturing facility · Bengaluru, India</span></div>
 </div>
+
+<section class="brands" aria-label="British Biologicals brands">
+  <div class="wrap"><span class="label">Our brands</span></div>
+  <div class="marquee">
+    <div class="track">
+      <ul class="brand-row">
+        <li><img src="/assets/brands/b-protin.png" width="277" height="132" alt="B-Protin" decoding="async"></li>
+        <li><img src="/assets/brands/d-protin.png" width="304" height="132" alt="D-Protin" decoding="async"></li>
+        <li><img src="/assets/brands/kidspro.png" width="446" height="132" alt="Kids-Pro" decoding="async"></li>
+        <li><img src="/assets/brands/medislim.png" width="621" height="132" alt="MediSlim" decoding="async"></li>
+        <li><img src="/assets/brands/pulmocare.png" width="452" height="132" alt="PulmoCare" decoding="async"></li>
+        <li><img src="/assets/brands/hepapro.png" width="662" height="132" alt="Hepapro" decoding="async"></li>
+        <li><img src="/assets/brands/menopro.png" width="367" height="132" alt="Menopro" decoding="async"></li>
+        <li><img src="/assets/brands/pulmoplus.png" width="307" height="132" alt="Pulmo Plus" decoding="async"></li>
+        <li><img src="/assets/brands/medislim-gold.png" width="281" height="132" alt="MediSlim Gold" decoding="async"></li>
+        <li><img src="/assets/brands/sirus.png" width="303" height="132" alt="Sirus" decoding="async"></li>
+        <li><img src="/assets/brands/b-protin-df.png" width="218" height="132" alt="B-Protin DF" decoding="async"></li>
+      </ul>
+      <ul class="brand-row" aria-hidden="true">
+        <li><img src="/assets/brands/b-protin.png" width="277" height="132" alt="B-Protin" decoding="async"></li>
+        <li><img src="/assets/brands/d-protin.png" width="304" height="132" alt="D-Protin" decoding="async"></li>
+        <li><img src="/assets/brands/kidspro.png" width="446" height="132" alt="Kids-Pro" decoding="async"></li>
+        <li><img src="/assets/brands/medislim.png" width="621" height="132" alt="MediSlim" decoding="async"></li>
+        <li><img src="/assets/brands/pulmocare.png" width="452" height="132" alt="PulmoCare" decoding="async"></li>
+        <li><img src="/assets/brands/hepapro.png" width="662" height="132" alt="Hepapro" decoding="async"></li>
+        <li><img src="/assets/brands/menopro.png" width="367" height="132" alt="Menopro" decoding="async"></li>
+        <li><img src="/assets/brands/pulmoplus.png" width="307" height="132" alt="Pulmo Plus" decoding="async"></li>
+        <li><img src="/assets/brands/medislim-gold.png" width="281" height="132" alt="MediSlim Gold" decoding="async"></li>
+        <li><img src="/assets/brands/sirus.png" width="303" height="132" alt="Sirus" decoding="async"></li>
+        <li><img src="/assets/brands/b-protin-df.png" width="218" height="132" alt="B-Protin DF" decoding="async"></li>
+      </ul>
+    </div>
+  </div>
+</section>
 
 <main>
   <div class="wrap">
