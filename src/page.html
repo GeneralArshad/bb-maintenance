@@ -189,7 +189,17 @@ h1{
 }
 .cred{padding:1.5rem 1.75rem 1.5rem 1.75rem;border-left:1px solid var(--rule-soft)}
 .cred:first-child{border-left:0;padding-left:0}
-.cred .k{display:block;margin-bottom:.5rem;color:var(--accent-ink)}
+.cred .k{display:block;margin-bottom:.9rem;color:var(--accent-ink)}
+.cred .k svg{
+  width:22px;height:22px;display:block;
+  fill:none;stroke:currentColor;stroke-width:1.5;
+  stroke-linecap:round;stroke-linejoin:round;
+}
+/* label kept for screen readers — the icon carries it visually */
+.vh{
+  position:absolute;width:1px;height:1px;margin:-1px;padding:0;
+  overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0;
+}
 .cred .v{font-size:.9375rem;line-height:1.45;color:var(--ink);letter-spacing:-.005em}
 
 /* ---- contact record -------------------------------------------------- */
@@ -272,15 +282,18 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:.5rem 2rem;padding-block:1.5rem 2.5
 
     <section class="creds rise d4" aria-label="Company credentials">
       <div class="cred">
-        <span class="k label">Scale</span>
+        <span class="k" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="3.5" y="13" width="4.5" height="7" rx="1"/><rect x="9.75" y="8.5" width="4.5" height="11.5" rx="1"/><rect x="16" y="4" width="4.5" height="16" rx="1"/></svg></span>
+        <span class="vh">Scale</span>
         <span class="v">South East Asia's biggest manufacturing plant</span>
       </div>
       <div class="cred">
-        <span class="k label">Science</span>
+        <span class="k" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="5.6" r="2.5"/><circle cx="5.6" cy="17.6" r="2.5"/><circle cx="18.4" cy="17.6" r="2.5"/><path d="M10.8 7.8 6.8 15.4"/><path d="M13.2 7.8 17.2 15.4"/><path d="M8.1 17.6h7.8"/></svg></span>
+        <span class="vh">Science</span>
         <span class="v">Pioneers in protein therapy</span>
       </div>
       <div class="cred">
-        <span class="k label">Position</span>
+        <span class="k" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><circle cx="12" cy="12" r="4"/><circle cx="12" cy="12" r="1.1" fill="currentColor" stroke="none"/></svg></span>
+        <span class="vh">Position</span>
         <span class="v">No. 1 Rx-driven nutraceutical brand in India</span>
       </div>
     </section>
@@ -368,6 +381,7 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:.5rem 2rem;padding-block:1.5rem 2.5
     'precision highp float;',
     'attribute vec2 a_pos;',
     'uniform float u_time; uniform float u_aspect;',
+    'uniform vec2 u_mouse; uniform float u_influence;',
     'uniform vec3 u_c0,u_c1,u_c2,u_c3;',
     'varying vec3 v_color;',
     NOISE,
@@ -375,10 +389,15 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:.5rem 2rem;padding-block:1.5rem 2.5
     '  vec2 g = a_pos;',
     '  vec2 s = vec2(u_aspect, 1.0);',
     '  float t = u_time;',
+    // pointer bulge: falls off with distance, eased in and out by u_influence
+    '  vec2 dv = (g - u_mouse) * s;',
+    '  float dl = max(length(dv), 1e-4);',
+    '  vec2 dir = dv / dl;',
+    '  float pull = u_influence * exp(-dl*dl*4.5);',
     // fold the sheet
     '  float f = snoise(vec3(g*s*vec2(1.9,1.3) + vec2(0.0, t*0.10), t*0.075))*0.55',
-    '          + snoise(vec3(g*s*vec2(3.3,2.4) - vec2(t*0.06, 0.0), t*0.10+17.0))*0.22;',
-    '  vec2 q = g + vec2(f*0.06, f*0.11);',
+    '          + snoise(vec3(g*s*vec2(3.3,2.4) - vec2(t*0.06, 0.0), t*0.10+17.0))*0.22 + pull*0.85;',
+    '  vec2 q = g + vec2(f*0.06, f*0.11) + dir * pull * 0.045;',
     // ribbons of colour, back to front
     '  v_color = u_c0;',
     '  float w1 = smoothstep(-0.22, 0.34, snoise(vec3(q*s*vec2(1.7,1.2) + vec2(t*0.045,0.0), t*0.06)));',
@@ -389,7 +408,7 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:.5rem 2rem;padding-block:1.5rem 2.5
     '  v_color = mix(v_color, u_c3, w3*0.72);',
     // expand past the edges so the fold never reveals a seam
     '  vec2 pad = vec2(0.12, 0.16);',
-    '  vec2 p = mix(-pad, 1.0+pad, g) + vec2(f*0.05, f*0.09);',
+    '  vec2 p = mix(-pad, 1.0+pad, g) + vec2(f*0.05, f*0.09) + dir * pull * 0.035;',
     '  gl_Position = vec4(p*2.0-1.0, 0.0, 1.0);',
     '}'
   ].join('\n');
@@ -440,6 +459,8 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:.5rem 2rem;padding-block:1.5rem 2.5
   });
   var uTime = gl.getUniformLocation(prog, 'u_time');
   var uAspect = gl.getUniformLocation(prog, 'u_aspect');
+  var uMouse = gl.getUniformLocation(prog, 'u_mouse');
+  var uInfluence = gl.getUniformLocation(prog, 'u_influence');
 
   var w = 0, h = 0;
   function resize() {
@@ -454,11 +475,25 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:.5rem 2rem;padding-block:1.5rem 2.5
     return true;
   }
 
+  // pointer state — target values are chased by the render loop so the
+  // bulge glides instead of snapping to every mousemove
+  var px = 0.5, py = 0.5, tpx = 0.5, tpy = 0.5, infl = 0, tinfl = 0, cx = -1, cy = -1;
   var raf = null, visible = true, t0 = 0;
   function draw(ms) {
     raf = null;
     if (!resize()) { schedule(); return; }
     if (!t0) t0 = ms;
+    if (cx >= 0) {
+      var r = host.getBoundingClientRect();
+      tpx = (cx - r.left) / r.width;
+      tpy = (cy - r.top) / r.height;
+      tinfl = (tpx > -0.2 && tpx < 1.2 && tpy > -0.2 && tpy < 1.2) ? 1 : 0;
+    }
+    px += (tpx - px) * 0.07;
+    py += (tpy - py) * 0.07;
+    infl += (tinfl - infl) * 0.05;
+    gl.uniform2f(uMouse, px, py);
+    gl.uniform1f(uInfluence, infl);
     gl.uniform1f(uTime, still ? 12.0 : (ms - t0) / 1000);
     gl.clearColor(0, 0, 0, 0);
     gl.clear(gl.COLOR_BUFFER_BIT);
@@ -486,6 +521,17 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:.5rem 2rem;padding-block:1.5rem 2.5
     e.preventDefault(); if (raf !== null) cancelAnimationFrame(raf); raf = null;
     host.classList.add('is-static'); canvas.remove();
   });
+
+  // mouse only: on touch this would fight scrolling, and hijacking pinch
+  // would break the browser's own zoom.
+  if (!still) {
+    addEventListener('pointermove', function (e) {
+      if (e.pointerType !== 'mouse') return;
+      cx = e.clientX; cy = e.clientY;
+      schedule();
+    }, { passive: true });
+    document.addEventListener('pointerleave', function () { tinfl = 0; }, { passive: true });
+  }
 
   schedule();
 })();
