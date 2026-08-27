@@ -1,0 +1,11 @@
+{
+  "name": "bb-maintenance",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Maintenance page for britishbiologicals.com",
+  "scripts": {
+    "dev": "node dev.js --watch",
+    "build": "node build.js",
+    "start": "node dev.js"
+  }
+}

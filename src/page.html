@@ -1,0 +1,268 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>British Biologicals — Site maintenance</title>
+<meta name="description" content="britishbiologicals.com is temporarily offline while we move to a new platform. Manufacturing, supply and customer support continue as usual.">
+<meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="#FFFFFF">
+<meta property="og:title" content="British Biologicals — Site maintenance">
+<meta property="og:description" content="Our website is temporarily offline while we move to a new platform. Everything else is running as usual.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://www.britishbiologicals.com/">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='0'%3E%3Cstop offset='0' stop-color='%23C8102E'/%3E%3Cstop offset='1' stop-color='%232E3192'/%3E%3C/linearGradient%3E%3Crect width='32' height='32' rx='6' fill='url(%23g)'/%3E%3Ctext x='16' y='22' font-family='Helvetica,Arial,sans-serif' font-size='15' font-weight='700' fill='%23fff' text-anchor='middle'%3EBB%3C/text%3E%3C/svg%3E">
+<style id="fonts">/* FONTS_PLACEHOLDER */</style>
+<style>
+/* ---- tokens ----------------------------------------------------------
+   One typeface (Instrument Sans), one ground (pure white), one accent.
+   Single-theme by intent — no dark-mode variants.                       */
+:root{
+  --paper:#FFFFFF;
+  --ink:#0F1319;
+  --ink-2:#3B4350;
+  --muted:#737B88;
+  --rule:#E7E9F0;
+  --rule-soft:#EFF1F6;
+  --shade:#F5F6FA;
+  --accent:#2E3192;          /* BB brand indigo */
+  --accent-ink:#262A7D;
+  --crimson:#C8102E;         /* BB brand crimson */
+  --grad:linear-gradient(90deg,var(--crimson) 0%,var(--accent) 100%);
+
+  --font:"Instrument Sans","Helvetica Neue",Helvetica,Arial,sans-serif;
+  --measure:62ch;
+  --pad:clamp(1.25rem,5vw,3.5rem);
+}
+
+/* ---- base ------------------------------------------------------------ */
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{
+  margin:0;
+  background:var(--paper);
+  color:var(--ink);
+  font-family:var(--font);
+  font-size:16px;
+  line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+  text-rendering:optimizeLegibility;
+}
+img{max-width:100%;display:block}
+a{color:var(--accent-ink);text-decoration:none}
+a:hover{text-decoration:underline;text-underline-offset:3px;text-decoration-thickness:1px}
+a:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:2px}
+
+/* one label style, used everywhere a small caps line is needed */
+.label{
+  font-size:.6875rem;
+  font-weight:500;
+  letter-spacing:.13em;
+  text-transform:uppercase;
+  color:var(--muted);
+}
+
+/* ---- shell ----------------------------------------------------------- */
+.edge{height:3px;background:var(--grad)}
+.wrap{max-width:1120px;margin:0 auto;padding-inline:var(--pad)}
+
+/* ---- masthead -------------------------------------------------------- */
+.masthead{border-bottom:1px solid var(--rule)}
+.masthead .wrap{
+  display:flex;align-items:center;justify-content:space-between;
+  gap:1rem 2rem;flex-wrap:wrap;
+  padding-block:clamp(1.125rem,2.5vw,1.625rem);
+}
+.logo-img{height:46px;width:auto}
+.wordmark{
+  display:inline-block;font-size:1.1875rem;font-weight:600;
+  letter-spacing:-.015em;line-height:1.2;color:var(--ink);
+}
+.wordmark .sub{
+  display:block;margin-top:.28rem;font-size:.625rem;font-weight:500;
+  letter-spacing:.15em;text-transform:uppercase;color:var(--muted);
+}
+.status{display:inline-flex;align-items:center;gap:.6rem;color:var(--ink-2)}
+.dot{
+  width:7px;height:7px;border-radius:50%;background:var(--accent);
+  animation:pulse 2.8s ease-out infinite;flex:none;
+}
+@keyframes pulse{
+  0%{box-shadow:0 0 0 0 color-mix(in srgb,var(--accent) 45%,transparent)}
+  70%{box-shadow:0 0 0 7px color-mix(in srgb,var(--accent) 0%,transparent)}
+  100%{box-shadow:0 0 0 0 color-mix(in srgb,var(--accent) 0%,transparent)}
+}
+
+/* ---- hero ------------------------------------------------------------ */
+.hero{
+  position:relative;
+  width:100%;
+  aspect-ratio:1792/690;
+  max-height:min(64vh,620px);
+  background:var(--shade);
+  overflow:hidden;
+  border-bottom:1px solid var(--rule);
+}
+.hero img{width:100%;height:100%;object-fit:cover;object-position:center}
+.hero.is-empty::after{
+  content:"facility.jpg";
+  position:absolute;inset:0;display:grid;place-items:center;
+  font-size:.6875rem;font-weight:500;letter-spacing:.13em;
+  text-transform:uppercase;color:var(--muted);
+  background:repeating-linear-gradient(135deg,transparent 0 11px,var(--rule-soft) 11px 12px);
+}
+.hero-caption .wrap{padding-block:.85rem;border-bottom:1px solid var(--rule)}
+
+/* ---- main ------------------------------------------------------------ */
+main .wrap{padding-block:clamp(3rem,7vw,5rem)}
+
+.eyebrow{margin:0 0 1.375rem;color:var(--accent-ink)}
+h1{
+  margin:0;font-size:clamp(2.125rem,5.4vw,3.375rem);font-weight:600;
+  letter-spacing:-.03em;line-height:1.05;text-wrap:balance;max-width:16ch;
+}
+.lead{
+  margin:1.5rem 0 0;max-width:var(--measure);
+  font-size:clamp(1rem,1.6vw,1.0625rem);line-height:1.72;color:var(--ink-2);
+}
+.lead + .lead{margin-top:1rem}
+
+/* ---- credentials ----------------------------------------------------- */
+.creds{
+  margin-top:clamp(2.75rem,5vw,3.5rem);
+  display:grid;grid-template-columns:repeat(3,1fr);gap:0;
+  border-block:1px solid var(--rule);
+}
+.cred{padding:1.5rem 1.75rem 1.5rem 1.75rem;border-left:1px solid var(--rule-soft)}
+.cred:first-child{border-left:0;padding-left:0}
+.cred .k{display:block;margin-bottom:.5rem;color:var(--accent-ink)}
+.cred .v{font-size:.9375rem;line-height:1.45;color:var(--ink);letter-spacing:-.005em}
+
+/* ---- contact record -------------------------------------------------- */
+.record{margin-top:clamp(2.75rem,6vw,4rem);max-width:780px}
+.record h2{margin:0;font-size:.6875rem;font-weight:500;letter-spacing:.13em;
+  text-transform:uppercase;color:var(--muted)}
+.rows{margin:.9rem 0 0;display:grid;gap:0}
+.row{
+  display:grid;grid-template-columns:190px minmax(0,1fr);gap:.35rem 2rem;
+  padding-block:1.05rem;border-top:1px solid var(--rule-soft);align-items:baseline;
+}
+.row:first-child{border-top:0}
+.row dt{padding-top:.2rem}
+.row dd{
+  margin:0;font-size:.9688rem;line-height:1.65;color:var(--ink);
+  font-variant-numeric:tabular-nums;
+}
+.row dd .sep{color:var(--rule);margin-inline:.55rem}
+
+/* ---- footer ---------------------------------------------------------- */
+footer{border-top:1px solid var(--rule);margin-top:clamp(2.75rem,6vw,4rem)}
+footer .wrap{display:flex;flex-wrap:wrap;gap:.5rem 2rem;padding-block:1.5rem 2.5rem}
+
+/* ---- entrance -------------------------------------------------------- */
+.rise{opacity:0;transform:translateY(10px);animation:rise .7s cubic-bezier(.22,.61,.36,1) forwards}
+.d1{animation-delay:.08s}
+.d2{animation-delay:.15s}
+.d3{animation-delay:.22s}
+.d4{animation-delay:.30s}
+.d5{animation-delay:.38s}
+@keyframes rise{to{opacity:1;transform:none}}
+@media (prefers-reduced-motion: reduce){
+  .rise{animation:none;opacity:1;transform:none}
+  .dot{animation:none}
+}
+
+@media (max-width:820px){
+  .creds{grid-template-columns:1fr}
+  .cred{border-left:0;padding:1.15rem 0;border-top:1px solid var(--rule-soft)}
+  .cred:first-child{border-top:0}
+  .hero{aspect-ratio:4/3;max-height:52vh}
+}
+@media (max-width:640px){
+  .row{grid-template-columns:1fr;gap:.3rem}
+  .row dt{padding-top:0}
+  .logo-img{height:38px}
+  .masthead .wrap{gap:.75rem}
+}
+</style>
+</head>
+<body>
+<div class="edge"></div>
+
+<header class="masthead">
+  <div class="wrap">
+    <img src="/assets/logo.png" alt="British Biologicals — A Global Nutraceutical Company" class="logo-img"
+         onerror="this.outerHTML='&lt;span class=\'wordmark\'&gt;British Biologicals&lt;span class=\'sub\'&gt;A Global Nutraceutical Company&lt;/span&gt;&lt;/span&gt;'">
+    <span class="status label"><span class="dot" aria-hidden="true"></span>Scheduled maintenance</span>
+  </div>
+</header>
+
+<div class="hero">
+  <img src="/assets/facility.jpg"
+       alt="Technicians in cleanroom suits operating filling and packaging lines at the British Biologicals manufacturing plant"
+       onerror="this.parentNode.classList.add('is-empty');this.remove()">
+</div>
+<div class="hero-caption">
+  <div class="wrap"><span class="label">Manufacturing facility · Bengaluru, India</span></div>
+</div>
+
+<main>
+  <div class="wrap">
+    <p class="eyebrow label rise">britishbiologicals.com</p>
+    <h1 class="rise d1">Our website is being rebuilt.</h1>
+    <p class="lead rise d2">We are moving britishbiologicals.com to a new platform. The site is offline while that work is underway, and will return with a fuller picture of our clinical nutrition range.</p>
+    <p class="lead rise d3">Nothing else has changed. Manufacturing, despatch, distributor supply and customer support are all running as usual — the numbers below reach us directly.</p>
+
+    <section class="creds rise d4" aria-label="Company credentials">
+      <div class="cred">
+        <span class="k label">Scale</span>
+        <span class="v">South East Asia's biggest manufacturing plant</span>
+      </div>
+      <div class="cred">
+        <span class="k label">Science</span>
+        <span class="v">Pioneers in protein therapy</span>
+      </div>
+      <div class="cred">
+        <span class="k label">Position</span>
+        <span class="v">No. 1 Rx-driven nutraceutical brand in India</span>
+      </div>
+    </section>
+
+    <section class="record rise d5">
+      <h2>Reach us</h2>
+      <dl class="rows">
+        <div class="row">
+          <dt class="label">Toll free</dt>
+          <dd><a href="tel:180042537373">1800 425 37373</a></dd>
+        </div>
+        <div class="row">
+          <dt class="label">Telephone</dt>
+          <dd><a href="tel:+919019728301">+91 90197 28301</a><span class="sep">/</span><a href="tel:+919019728302">+91 90197 28302</a></dd>
+        </div>
+        <div class="row">
+          <dt class="label">Email</dt>
+          <dd><a href="mailto:info@britishbiologicals.com">info@britishbiologicals.com</a></dd>
+        </div>
+        <div class="row">
+          <dt class="label">Registered office</dt>
+          <dd>No. 41/1, Bannerghatta Main Road, Arakere,<br>Bengaluru, Karnataka 560076, India</dd>
+        </div>
+        <div class="row">
+          <dt class="label">Hours</dt>
+          <dd>Monday to Saturday, 9:30 – 18:00 IST</dd>
+        </div>
+      </dl>
+    </section>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span class="label">© <span id="yr">2026</span> British Biologicals</span>
+    <span class="label">Three decades of clinical nutrition · India and 30+ countries</span>
+  </div>
+</footer>
+
+<script>document.getElementById("yr").textContent=new Date().getFullYear();</script>
+</body>
+</html>
