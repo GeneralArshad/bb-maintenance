@@ -82,13 +82,13 @@ a:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius
 .wrap{max-width:1120px;margin:0 auto;padding-inline:var(--pad)}
 
 /* ---- masthead -------------------------------------------------------- */
-.masthead{border-bottom:1px solid var(--rule)}
+.masthead{border-bottom:0}
 .masthead .wrap{
   display:flex;align-items:center;justify-content:space-between;
   gap:1rem 2rem;flex-wrap:wrap;
-  padding-block:clamp(1.125rem,2.5vw,1.625rem);
+  padding-block:clamp(1.375rem,3vw,2rem);
 }
-.logo-img{height:46px;width:auto}
+.logo-img{height:72px;width:auto}
 .wordmark{
   display:inline-block;font-size:1.1875rem;font-weight:600;
   letter-spacing:-.015em;line-height:1.2;color:var(--ink);
@@ -97,7 +97,6 @@ a:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius
   display:block;margin-top:.28rem;font-size:.625rem;font-weight:500;
   letter-spacing:.15em;text-transform:uppercase;color:var(--muted);
 }
-.status{display:inline-flex;align-items:center;gap:.6rem;color:var(--ink-2)}
 .dot{
   width:7px;height:7px;border-radius:50%;background:var(--accent);
   animation:pulse 2.8s ease-out infinite;flex:none;
@@ -177,7 +176,7 @@ main .wrap{padding-block:clamp(2.75rem,6vw,4.25rem)}
 .wrap-lower{padding-top:clamp(2.5rem,5vw,3.75rem)!important}
 .wrap-lower .creds{margin-top:0}
 
-.eyebrow{margin:0 0 1.375rem;color:var(--accent-ink)}
+.eyebrow{display:inline-flex;align-items:center;gap:.6rem;margin:0 0 1.375rem;color:var(--accent-ink)}
 h1{
   margin:0;font-size:clamp(2.125rem,5.4vw,3.375rem);font-weight:600;
   letter-spacing:-.03em;line-height:1.05;text-wrap:balance;max-width:16ch;
@@ -280,7 +279,7 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:.5rem 2rem;padding-block:1.5rem 2.5
 @media (max-width:640px){
   .row{grid-template-columns:1fr;gap:.3rem}
   .row dt{padding-top:0}
-  .logo-img{height:38px}
+  .logo-img{height:52px}
   .masthead .wrap{gap:.75rem}
 }
 </style>
@@ -292,7 +291,6 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:.5rem 2rem;padding-block:1.5rem 2.5
   <div class="wrap">
     <img src="/assets/logo.png" alt="British Biologicals — A Global Nutraceutical Company" class="logo-img"
          onerror="this.outerHTML='&lt;span class=\'wordmark\'&gt;British Biologicals&lt;span class=\'sub\'&gt;A Global Nutraceutical Company&lt;/span&gt;&lt;/span&gt;'">
-    <span class="status label"><span class="dot" aria-hidden="true"></span>Scheduled maintenance</span>
   </div>
 </header>
 
@@ -339,7 +337,7 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:.5rem 2rem;padding-block:1.5rem 2.5
 <main>
   <div class="wrap">
     <section class="thesis">
-      <p class="eyebrow label rise">britishbiologicals.com</p>
+      <p class="eyebrow label rise"><span class="dot" aria-hidden="true"></span>Scheduled maintenance</p>
       <h1 class="rise d1">Our website is being rebuilt.</h1>
       <p class="lead rise d2">British Biologicals is a research and innovation based global healthcare nutraceutical company, popularly known as ‘The Protein People’. British Biologicals is one of the largest medical nutrition manufacturers impacting health and wellness with its nutritional solutions for paediatric, diabetic, gynaecology, cardiovascular, hepatitis, geriatric nutrition, and healthcare.</p>
       <p class="note rise d3">We are moving this site to a new platform. Manufacturing, despatch, distributor supply and customer support are all running as usual — the numbers below reach us directly.</p>
